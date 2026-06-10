@@ -107,12 +107,8 @@ def calcular_iva(valor_base, tasa=0.19):
         calcular_iva(1_000_000, 0.05)  -> 50000.0
         calcular_iva(0)                -> 0.0
     """
-    # TODO:
-    # 1. Multiplica valor_base por tasa y guarda el resultado en una
-    #    variable llamada iva.
-    # 2. Retorna iva.
-    pass
-
+    iva = valor_base * tasa
+    return iva
 
 def formatear_reporte_valor(nit, nombre, valor, estado):
     """
