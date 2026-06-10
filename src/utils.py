@@ -147,12 +147,7 @@ def mostrar_resultado(etiqueta, valor):
         etiqueta (str): Descripción del resultado.
         valor (float): Valor numérico a mostrar.
     """
-    # TODO:
-    # 1. Imprime usando print() y un f-string con este formato:
-    #    "  {etiqueta}: ${valor:,.0f}"
-    #    (el ,.0f formatea el número con separadores de miles y sin decimales)
-    # Nota: este es un procedimiento, no retorna nada.
-    pass
+    print(f"{etiqueta}: ${valor:,.0f}" )
 
 
 def generar_ficha_contribuyente(nit, nombre, municipio, periodo, valor, estado):
