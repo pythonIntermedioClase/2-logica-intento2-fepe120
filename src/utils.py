@@ -127,13 +127,9 @@ def formatear_reporte_valor(nit, nombre, valor, estado):
         formatear_reporte_valor("900123456", "Empresa ABC S.A.S.", 1_500_000, "ACTIVO")
         -> "NIT 900123456 | Empresa ABC S.A.S. | $1,500,000 | ACTIVO"
     """
-    # TODO:
-    # 1. Construye una cadena usando un f-string con este formato exacto:
-    #    "NIT {nit} | {nombre} | ${valor:,} | {estado}"
-    #    (el :, dentro del f-string agrega separadores de miles al número)
-    # 2. Guarda el resultado en una variable llamada linea.
-    # 3. Retorna linea.
-    pass
+    linea = f"{nit}|{nombre}|{valor}|{estado}"
+    return linea
+
 
 
 def mostrar_resultado(etiqueta, valor):
@@ -189,8 +185,21 @@ def generar_ficha_contribuyente(nit, nombre, municipio, periodo, valor, estado):
     #    los caracteres de recuadro y los seis campos.
     #    Usa las variables intermedias del paso 1, 2 y 3.
     # 5. Retorna ficha.
-    pass
-
+    nombre_mayusculas = nombre.upper()
+    municipio_mayusculas = municipio.upper()
+    valor_formateado = f"${valor:,}"
+    f_string = f"""
+     ________________________
+    | FICHA DE CONTRIBUYENTE |
+     ________________________ 
+      NIT : {nit}
+      Nombre : {nombre_mayusculas}
+      Municipio : {municipio_mayusculas}
+      Periodo : {periodo}
+      Valor : {valor_formateado}
+      Estado : {estado}            
+     ________________________  
+    """
 
 # ---------------------------------------------------------------------------
 # ENCADENAMIENTO DE FUNCIONES
