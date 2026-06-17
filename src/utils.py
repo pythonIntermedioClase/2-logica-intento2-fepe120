@@ -220,13 +220,8 @@ def limpiar_nit(nit):
         limpiar_nit("900.123.456")  -> "900123456"
         limpiar_nit("900123456")    -> "900123456"
     """
-    # TODO:
-    # 1. Elimina los guiones del nit con .replace("-", "") y guarda el
-    #    resultado en una variable llamada sin_guiones.
-    # 2. Elimina los puntos de sin_guiones con .replace(".", "") y guarda
-    #    el resultado en una variable llamada sin_puntos.
-    # 3. Retorna sin_puntos.
-    pass
+
+    return nit.replace("-","").replace(".","")
 
 
 def validar_nit(nit):
@@ -255,7 +250,9 @@ def validar_nit(nit):
     # 3. Verifica que la longitud sea válida:
     #    longitud_valida = len(nit_limpio) >= 9 and len(nit_limpio) <= 10
     # 4. Retorna solo_digitos and longitud_valida.
-    pass
+    nit_limpio = nit
+    nit_limpio = nit_limpio.isdigit(nit)
+    return 
 
 
 def normalizar_texto(texto):
@@ -628,14 +625,13 @@ def imprimir_nits_validos(nits):
     Args:
         nits (list): Lista de NITs como cadenas de texto.
     """
-    # TODO:
-    # 1. Imprime el encabezado: print("NITs válidos:")
-    # 2. Inicializa un contador: contador = 1
-    # 3. Recorre la lista con: for nit in nits:
-    #    - Llama a validar_nit(nit)
-    #    - Si es válido: imprime "  {contador}. {nit}"
-    #      e incrementa: contador = contador + 1
-    pass
+
+    print("NITs válidos:")
+    contador = 1
+    for nit in nits:
+        validar_nit(nit)
+        print(f"{contador}. {nit}")
+        contador += 1 
 
 
 def calcular_totales(valores):
@@ -665,7 +661,15 @@ def calcular_totales(valores):
     #    - Actualiza el máximo: si valor > maximo, haz maximo = valor
     # 4. Calcula el promedio: promedio = total / len(valores)
     # 5. Retorna total, promedio, maximo (los tres en esa línea)
-    pass
+    total = 0
+    promedio = 0
+    maximo = 0
+    for valor in valores:
+        total += valor
+        if valor > maximo:
+            maximo = valor
+    promedio = total/len(valores)
+    return (total, promedio, maximo)
 
 
 def generar_periodos_multiple(anio_inicio, anio_fin, meses_por_anio=12):
@@ -696,8 +700,11 @@ def generar_periodos_multiple(anio_inicio, anio_fin, meses_por_anio=12):
     #      (el :02d formatea el mes con cero a la izquierda: 1 -> "01")
     #    - Agrega a la lista: periodos.append(codigo)
     # 4. Retorna periodos
-    pass
-
+    periodos = []
+    for anno in range(anio_inicio,anio_fin+1):
+        for mes in range(1,meses_por_anio+1):
+            string_anio_mes = f"{anno}{mes:02}"
+            periodos.append(string_anio_mes)
 
 # ---------------------------------------------------------------------------
 # CICLOS WHILE
