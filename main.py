@@ -79,15 +79,15 @@ def menu_funciones_basicas():
 
     mostrar_resultado("IVA sobre $1,500,000", iva)
 
-    # TODO: descomenta cuando hayas completado formatear_reporte_valor
-    # linea = formatear_reporte_valor("900123456", "Empresa ABC S.A.S.", 1_500_000, "ACTIVO")
-    # print(f"  Reporte: {linea}")
+  
+    linea = formatear_reporte_valor("900123456", "Empresa ABC S.A.S.", 1_500_000, "ACTIVO")
+    print(f"  Reporte: {linea}")
 
-    # TODO: descomenta cuando hayas completado generar_ficha_contribuyente
-    # ficha = generar_ficha_contribuyente(
-    #     "900123456", "Empresa ABC S.A.S.", "Bogota", "202401", 1_500_000, "ACTIVO"
-    # )
-    # print(ficha)
+  
+    ficha = generar_ficha_contribuyente(
+        "900123456", "Empresa ABC S.A.S.", "Bogota", "202401", 1_500_000, "ACTIVO"
+    )
+    print(ficha)
     pass
 
 
@@ -113,12 +113,12 @@ def menu_condicionales_simples():
     """Sección 3: condicionales simples."""
     print("\n--- Condicionales simples ---")
 
-    # TODO: descomenta cuando hayas completado esta_al_dia
-    # casos_mora = [0, 1, 30, 90]
-    # for dias in casos_mora:
-    #     al_dia = esta_al_dia(dias)
-    #     estado = "Al día" if al_dia else "En mora"
-    #     print(f"  {dias} días de mora → {estado}")
+
+    casos_mora = [0, 1, 30, 90]
+    for dias in casos_mora:
+        al_dia = esta_al_dia(dias)
+        estado = "Al día" if al_dia else "En mora"
+        print(f"  {dias} días de mora → {estado}")
 
     # TODO: descomenta cuando hayas completado aplicar_descuento
     # valor_base = 1_000_000
@@ -139,7 +139,7 @@ def menu_condicionales_anidados():
     """Sección 4: condicionales anidados."""
     print("\n--- Condicionales anidados ---")
 
-    # TODO: descomenta cuando hayas completado clasificar_mora
+
     # casos = [(0, 0), (15, 800_000), (15, 200_000)]
     # for dias, valor in casos:
     #     clasificacion = clasificar_mora(dias, valor)

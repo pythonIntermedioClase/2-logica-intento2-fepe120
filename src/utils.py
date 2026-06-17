@@ -430,15 +430,11 @@ def clasificar_mora(dias_mora, valor):
     Returns:
         str: "Mora alta", "Mora baja" o "Sin mora".
     """
-    # TODO:
-    # 1. Escribe el if externo: si dias_mora > 0 (hay mora)
-    #    - Dentro, escribe el if interno: si valor > 500_000
-    #      retorna "Mora alta"
-    #    - else (valor no supera 500_000):
-    #      retorna "Mora baja"
-    # 2. else (no hay mora):
-    #    retorna "Sin mora"
-    pass
+
+    if dias_mora < 1:
+        return True
+    else:
+        return False
 
 
 def determinar_tipo_seguimiento(estado, valor, municipio):
