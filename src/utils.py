@@ -705,7 +705,7 @@ def generar_periodos_multiple(anio_inicio, anio_fin, meses_por_anio=12):
         for mes in range(1,meses_por_anio+1):
             string_anio_mes = f"{anno}{mes:02}"
             periodos.append(string_anio_mes)
-
+    return periodos
 # ---------------------------------------------------------------------------
 # CICLOS WHILE
 # ---------------------------------------------------------------------------
