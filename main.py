@@ -126,12 +126,12 @@ def menu_condicionales_simples():
     mostrar_resultado("Con descuento voluntario", con_descuento)
     mostrar_resultado("Sin descuento", sin_descuento)
 
-    # TODO: descomenta cuando hayas completado asignar_prioridad
-    # casos = [(2_000_000, True), (2_000_000, False), (500_000, True), (500_000, False)]
-    # for valor, historial in casos:
-    #     prioridad = asignar_prioridad(valor, historial)
-    #     print(f"  ${valor:,} / historial={historial} → {prioridad}")
-    pass
+    
+    casos = [(2_000_000, True), (2_000_000, False), (500_000, True), (500_000, False)]
+    for valor, historial in casos:
+        prioridad = asignar_prioridad(valor, historial)
+        print(f"  ${valor:,} / historial={historial} → {prioridad}")
+    
 
 
 def menu_condicionales_anidados():
@@ -139,22 +139,21 @@ def menu_condicionales_anidados():
     print("\n--- Condicionales anidados ---")
 
 
-    # casos = [(0, 0), (15, 800_000), (15, 200_000)]
-    # for dias, valor in casos:
-    #     clasificacion = clasificar_mora(dias, valor)
-    #     print(f"  {dias} días / ${valor:,} → {clasificacion}")
+    casos = [(0, 0), (15, 800_000), (15, 200_000)]
+    for dias, valor in casos:
+        clasificacion = clasificar_mora(dias, valor)
+        print(f"  {dias} días / ${valor:,} → {clasificacion}")
 
-    # TODO: descomenta cuando hayas completado determinar_tipo_seguimiento
-    # registros_prueba = [
-    #     ("ACTIVO", 2_500_000, "Bogota"),
-    #     ("ACTIVO", 500_000, "Cali"),
-    #     ("PENDIENTE", 1_000_000, "Medellin"),
-    #     ("INACTIVO", 0, "Barranquilla"),
-    # ]
-    # for estado, valor, mun in registros_prueba:
-    #     tipo = determinar_tipo_seguimiento(estado, valor, mun)
-    #     print(f"  {estado} / ${valor:,} / {mun} → {tipo}")
-    pass
+    registros_prueba = [
+        ("ACTIVO", 2_500_000, "Bogota"),
+        ("ACTIVO", 500_000, "Cali"),
+        ("PENDIENTE", 1_000_000, "Medellin"),
+        ("INACTIVO", 0, "Barranquilla"),
+    ]
+    for estado, valor, mun in registros_prueba:
+        tipo = determinar_tipo_seguimiento(estado, valor, mun)
+        print(f"  {estado} / ${valor:,} / {mun} → {tipo}")
+    
 
 
 def menu_condicionales_encadenados():
