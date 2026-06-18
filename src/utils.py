@@ -176,15 +176,7 @@ def generar_ficha_contribuyente(nit, nombre, municipio, periodo, valor, estado):
           Estado     : ACTIVO
         ╚══════════════════════════════════════╝
     """
-    # TODO:
-    # 1. Convierte nombre a mayúsculas con .upper() y guárdalo en
-    #    una variable llamada nombre_mayusculas.
-    # 2. Convierte municipio a mayúsculas y guárdalo en municipio_mayusculas.
-    # 3. Formatea el valor como cadena: valor_formateado = f"${valor:,}"
-    # 4. Construye la ficha usando un f-string multilínea que contenga
-    #    los caracteres de recuadro y los seis campos.
-    #    Usa las variables intermedias del paso 1, 2 y 3.
-    # 5. Retorna ficha.
+    
     nombre_mayusculas = nombre.upper()
     municipio_mayusculas = municipio.upper()
     valor_formateado = f"${valor:,}"
@@ -243,16 +235,10 @@ def validar_nit(nit):
         validar_nit("ABC123")       -> False
         validar_nit("123")          -> False
     """
-    # TODO:
-    # 1. Llama a limpiar_nit(nit) y guarda el resultado en nit_limpio.
-    # 2. Verifica que nit_limpio solo tenga dígitos con .isdigit() y
-    #    guarda el resultado (True/False) en solo_digitos.
-    # 3. Verifica que la longitud sea válida:
-    #    longitud_valida = len(nit_limpio) >= 9 and len(nit_limpio) <= 10
-    # 4. Retorna solo_digitos and longitud_valida.
+
     nit_limpio = nit
     nit_limpio = nit_limpio.isdigit(nit)
-    return 
+    return nit_limpio
 
 
 def normalizar_texto(texto):
@@ -278,7 +264,7 @@ def normalizar_texto(texto):
     # 2. .upper()                convierte a mayúsculas
     # 3. .replace("  ", " ")     elimina espacios dobles internos
     # Retorna todo en una sola línea: return texto.strip().upper().replace(...)
-    pass
+    return texto.strip().upper().replace("  ", " ")
 
 
 def procesar_nit(nit):
@@ -295,15 +281,14 @@ def procesar_nit(nit):
         procesar_nit("900-123-456")  -> "NIT 900123456: válido"
         procesar_nit("ABC-123")      -> "NIT ABC-123: INVÁLIDO"
     """
-    # TODO:
-    # 1. Llama a limpiar_nit(nit) y guarda el resultado en nit_limpio.
-    # 2. Llama a validar_nit(nit_limpio) y guarda el resultado en es_valido.
-    # 3. Si es_valido es True:
-    #    mensaje = f"NIT {nit_limpio}: válido"
-    # 4. Si es_valido es False:
-    #    mensaje = f"NIT {nit}: INVÁLIDO"
-    # 5. Retorna mensaje.
-    pass
+
+    nit_limpio = limpiar_nit(nit)
+    es_valido = validar_nit(nit_limpio)
+    if es_valido:
+        mensaje = f"NIT {nit_limpio}: válido"
+    else:
+        mensaje = f"NIT {nit}: INVÁLIDO"
+    return mensaje
 
 
 def pipeline_nit(nit):
@@ -321,15 +306,15 @@ def pipeline_nit(nit):
         pipeline_nit("900-123-456")  -> "NIT 900123456 — apto para procesamiento"
         pipeline_nit("ABC-123")      -> "NIT ABC-123 — rechazado: formato inválido"
     """
-    # TODO:
-    # 1. Llama a limpiar_nit(nit) y guarda el resultado en nit_limpio.
-    # 2. Llama a validar_nit(nit_limpio) y guarda el resultado en es_valido.
-    # 3. Si es_valido es True:
-    #    informe = f"NIT {nit_limpio} — apto para procesamiento"
-    # 4. Si es_valido es False:
-    #    informe = f"NIT {nit} — rechazado: formato inválido"
-    # 5. Retorna informe.
-    pass
+ 
+    nit_limpio =limpiar_nit(nit)
+    es_valido = validar_nit(nit_limpio)
+    if es_valido:
+        informe = f"NIT {nit_limpio} — apto para procesamiento"
+    else:
+        informe = f"NIT {nit} — rechazado: formato inválido"
+    return informe
+    
 
 
 # ---------------------------------------------------------------------------
@@ -351,11 +336,12 @@ def esta_al_dia(dias_mora):
         esta_al_dia(1)   -> False
         esta_al_dia(30)  -> False
     """
-    # TODO:
-    # 1. Escribe un if/else:
-    #    - si dias_mora == 0: retorna True
-    #    - de lo contrario: retorna False
-    pass
+
+    if dias_mora < 1:
+        return True
+    else:
+        return False
+   
 
 
 def aplicar_descuento(valor, pago_voluntario):
@@ -373,14 +359,14 @@ def aplicar_descuento(valor, pago_voluntario):
         aplicar_descuento(1_000_000, True)   -> 900000.0
         aplicar_descuento(1_000_000, False)  -> 1000000
     """
-    # TODO:
-    # 1. Si pago_voluntario es True:
-    #    - Calcula el descuento: descuento = valor * 0.10
-    #    - Calcula el valor final: valor_con_descuento = valor - descuento
-    #    - Retorna valor_con_descuento
-    # 2. Si pago_voluntario es False:
-    #    - Retorna valor sin modificar
-    pass
+
+    if pago_voluntario:
+        descuento = valor * 0.10
+        valor_con_descuento = valor - descuento
+        return valor_con_descuento
+    else:
+        return valor
+    
 
 
 def asignar_prioridad(valor, tiene_historial_incumplimiento):
@@ -399,15 +385,15 @@ def asignar_prioridad(valor, tiene_historial_incumplimiento):
     Returns:
         str: "ALTA", "MEDIA" o "BAJA".
     """
-    # TODO:
-    # 1. Evalúa las dos condiciones por separado y guárdalas en variables:
-    #    valor_alto = valor > 1_000_000
-    #    tiene_historial = tiene_historial_incumplimiento
-    # 2. Escribe un if/elif/else:
-    #    - si valor_alto AND tiene_historial: retorna "ALTA"
-    #    - si valor_alto OR tiene_historial: retorna "MEDIA"
-    #    - de lo contrario: retorna "BAJA"
-    pass
+
+    valor_alto = valor > 1_000_000
+    tiene_historial = tiene_historial_incumplimiento
+    if valor_alto and tiene_historial:
+        return "ALTA"
+    elif valor_alto or tiene_historial:
+        return "MEDIA"
+    else:
+        return "BAJA"
 
 
 # ---------------------------------------------------------------------------

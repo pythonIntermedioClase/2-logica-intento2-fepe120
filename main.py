@@ -88,25 +88,24 @@ def menu_funciones_basicas():
         "900123456", "Empresa ABC S.A.S.", "Bogota", "202401", 1_500_000, "ACTIVO"
     )
     print(ficha)
-    pass
+    
 
 
 def menu_encadenamiento():
     """Sección 2: encadenamiento de funciones."""
     print("\n--- Encadenamiento de funciones ---")
 
-    # TODO: descomenta cuando hayas completado limpiar_nit y validar_nit
-    # casos = ["900-123-456", "800.234.567", "ABC123", "123", "8001234560"]
-    # for nit in casos:
-    #     resultado = procesar_nit(nit)
-    #     print(f"  {resultado}")
+    
+    casos = ["900-123-456", "800.234.567", "ABC123", "123", "8001234560"]
+    for nit in casos:
+        resultado = procesar_nit(nit)
+        print(f"  {resultado}")
 
-    # TODO: descomenta cuando hayas completado pipeline_nit
-    # print()
-    # for nit in casos:
-    #     informe = pipeline_nit(nit)
-    #     print(f"  {informe}")
-    pass
+
+    for nit in casos:
+        informe = pipeline_nit(nit)
+        print(f"  {informe}")
+
 
 
 def menu_condicionales_simples():
@@ -120,12 +119,12 @@ def menu_condicionales_simples():
         estado = "Al día" if al_dia else "En mora"
         print(f"  {dias} días de mora → {estado}")
 
-    # TODO: descomenta cuando hayas completado aplicar_descuento
-    # valor_base = 1_000_000
-    # con_descuento = aplicar_descuento(valor_base, True)
-    # sin_descuento = aplicar_descuento(valor_base, False)
-    # mostrar_resultado("Con descuento voluntario", con_descuento)
-    # mostrar_resultado("Sin descuento", sin_descuento)
+    
+    valor_base = 1_000_000
+    con_descuento = aplicar_descuento(valor_base, True)
+    sin_descuento = aplicar_descuento(valor_base, False)
+    mostrar_resultado("Con descuento voluntario", con_descuento)
+    mostrar_resultado("Sin descuento", sin_descuento)
 
     # TODO: descomenta cuando hayas completado asignar_prioridad
     # casos = [(2_000_000, True), (2_000_000, False), (500_000, True), (500_000, False)]
