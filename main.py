@@ -160,11 +160,11 @@ def menu_condicionales_encadenados():
     """Sección 5: condicionales encadenados."""
     print("\n--- Condicionales encadenados ---")
 
-    # TODO: descomenta cuando hayas completado clasificar_contribuyente
-    # valores = [0, 50_000, 500_000, 2_000_000, 6_000_000]
-    # for valor in valores:
-    #     categoria = clasificar_contribuyente(valor)
-    #     print(f"  ${valor:,} → {categoria}")
+    
+    valores = [0, 50_000, 500_000, 2_000_000, 6_000_000]
+    for valor in valores:
+        categoria = clasificar_contribuyente(valor)
+        print(f"  ${valor:,} → {categoria}")
 
     # TODO: descomenta cuando hayas completado calcular_sancion_basica
     # dias_prueba = [0, 15, 45, 75, 120]

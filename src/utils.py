@@ -469,21 +469,6 @@ def evaluar_cumplimiento(estado, valor, dias_mora, historial):
         str: "Cumplimiento total", "Incumplimiento leve",
              "Incumplimiento grave" o "Caso crítico".
     """
-    # TODO:
-    # Usa una serie de if independientes (no anidados entre sí):
-    #
-    # 1. Si estado == "ACTIVO" AND dias_mora == 0:
-    #    retorna "Cumplimiento total"
-    #
-    # 2. Si estado == "ACTIVO" AND dias_mora > 0:
-    #    - Si dias_mora <= 30 AND NOT historial: retorna "Incumplimiento leve"
-    #    - De lo contrario: retorna "Incumplimiento grave"
-    #
-    # 3. Si estado == "PENDIENTE" OR estado == "SUSPENDIDO":
-    #    - Si historial AND valor > 1_000_000: retorna "Caso crítico"
-    #    - De lo contrario: retorna "Incumplimiento grave"
-    #
-    # 4. Para cualquier otro caso: retorna "Incumplimiento leve"
     if (estado == "ACTIVO") and (dias_mora == 0):
         return "Cumplimiento total"
     elif (estado == "ACTIVO") and (dias_mora <= 30):
@@ -523,15 +508,17 @@ def clasificar_contribuyente(valor):
     Returns:
         str: Categoría del contribuyente.
     """
-    # TODO:
-    # Escribe un bloque if/elif/elif/elif/else con las condiciones en
-    # orden de mayor a menor (primero la más restrictiva):
-    # - si valor > 5_000_000: retorna "GRANDE"
-    # - elif valor > 1_000_000: retorna "MEDIANO"
-    # - elif valor > 100_000: retorna "PEQUEÑO"
-    # - elif valor > 0: retorna "MÍNIMO"
-    # - else: retorna "SIN VALOR"
-    pass
+
+    if valor > 5_000_000:
+        return "GRANDE"
+    elif valor > 1_000_000:
+        return "MEDIANO"
+    elif valor > 100_000:
+        return "PEQUEÑO"
+    elif valor > 0:
+        return "MÍNIMO"
+    else:
+        return "SIN VALOR"
 
 
 def describir_periodo(periodo):
@@ -561,7 +548,7 @@ def describir_periodo(periodo):
     #    - elif mes >= 7 and mes <= 9: retorna "Tercer trimestre"
     #    - elif mes >= 10 and mes <= 12: retorna "Cuarto trimestre"
     # 4. Al final: retorna "Período no reconocido" (si el mes no es 1-12)
-    pass
+    
 
 
 def calcular_sancion_basica(dias_mora, valor_base):
@@ -587,17 +574,19 @@ def calcular_sancion_basica(dias_mora, valor_base):
         calcular_sancion_basica(15, 1_000_000)   -> 10000.0
         calcular_sancion_basica(100, 1_000_000)  -> 100000.0
     """
-    # TODO:
-    # 1. Usa if/elif/elif/elif/else para asignar la tasa según dias_mora:
-    #    - si dias_mora == 0: tasa = 0.0
-    #    - elif dias_mora <= 30: tasa = 0.01
-    #    - elif dias_mora <= 60: tasa = 0.03
-    #    - elif dias_mora <= 90: tasa = 0.05
-    #    - else: tasa = 0.10
-    # 2. Calcula: sancion = valor_base * tasa
-    # 3. Retorna sancion.
-    pass
 
+    if dias_mora == 0:
+        tasa = 0.0
+    elif dias_mora <= 30:
+        tasa = 0.01
+    elif dias_mora <= 60:
+        tasa = 0.03
+    elif dias_mora <= 90:
+        tasa = 0.05
+    else:
+        tasa = 0.10
+    sancion = valor_base * tasa
+    return sancion
 
 def priorizar_cobro(valor, dias_mora, tipo_contribuyente):
     """
@@ -621,6 +610,10 @@ def priorizar_cobro(valor, dias_mora, tipo_contribuyente):
     #    los casos más graves (GRANDE + mora_alta) van primero → P1
     #    los casos menos urgentes van al final → P5
     # 3. El else final retorna "P5".
+    mora_alta = dias_mora > 60
+    mora_media = dias_mora > 30 and dias_mora <= 60
+    valor_alto = valor > 1_000_000
+
     pass
 
 
@@ -664,15 +657,7 @@ def calcular_totales(valores):
         total, promedio, maximo = calcular_totales([100, 200, 300])
         # total=600, promedio=200.0, maximo=300
     """
-    # TODO:
-    # 1. Inicializa el acumulador: total = 0
-    # 2. Inicializa el máximo con el primer elemento: maximo = valores[0]
-    #    (así tenemos un valor real con el que comparar en el ciclo)
-    # 3. Recorre con: for valor in valores:
-    #    - Acumula: total = total + valor
-    #    - Actualiza el máximo: si valor > maximo, haz maximo = valor
-    # 4. Calcula el promedio: promedio = total / len(valores)
-    # 5. Retorna total, promedio, maximo (los tres en esa línea)
+
     total = 0
     promedio = 0
     maximo = 0
@@ -703,15 +688,7 @@ def generar_periodos_multiple(anio_inicio, anio_fin, meses_por_anio=12):
         generar_periodos_multiple(2024, 2025, 3)
         -> ['202401', '202402', '202403', '202501', '202502', '202503']
     """
-    # TODO:
-    # 1. Crea una lista vacía: periodos = []
-    # 2. Ciclo externo: for anio in range(anio_inicio, anio_fin + 1):
-    #    (el +1 es para que anio_fin quede incluido)
-    # 3. Ciclo interno: for mes in range(1, meses_por_anio + 1):
-    #    - Construye el código: codigo = f"{anio}{mes:02d}"
-    #      (el :02d formatea el mes con cero a la izquierda: 1 -> "01")
-    #    - Agrega a la lista: periodos.append(codigo)
-    # 4. Retorna periodos
+
     periodos = []
     for anno in range(anio_inicio,anio_fin+1):
         for mes in range(1,meses_por_anio+1):
