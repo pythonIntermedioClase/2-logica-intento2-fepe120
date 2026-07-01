@@ -258,12 +258,7 @@ def normalizar_texto(texto):
         normalizar_texto("  bogotá d.c.  ")  -> "BOGOTÁ D.C."
         normalizar_texto("  empresa  abc  ") -> "EMPRESA ABC"
     """
-    # TODO:
-    # Encadena tres métodos en una sola expresión y retorna el resultado:
-    # 1. texto.strip()           elimina espacios al inicio y al final
-    # 2. .upper()                convierte a mayúsculas
-    # 3. .replace("  ", " ")     elimina espacios dobles internos
-    # Retorna todo en una sola línea: return texto.strip().upper().replace(...)
+
     return texto.strip().upper().replace("  ", " ")
 
 
@@ -435,15 +430,7 @@ def determinar_tipo_seguimiento(estado, valor, municipio):
     Returns:
         str: Tipo de seguimiento asignado.
     """
-    # TODO:
-    # 1. Si estado == "ACTIVO":
-    #    - Calcula si el municipio es prioritario:
-    #      municipio_prioritario = municipio == "Bogota" or municipio == "Medellin"
-    #    - Calcula si el valor es alto: valor_alto = valor > 2_000_000
-    #    - Si municipio_prioritario AND valor_alto: retorna "Seguimiento prioritario"
-    #    - De lo contrario: retorna "Seguimiento estándar"
-    # 2. elif estado == "PENDIENTE": retorna "Seguimiento urgente"
-    # 3. else: retorna "Sin seguimiento"
+
     if estado == "ACTIVO":
         municipio_priotario = municipio.isin(["Bogota","Medellin"])
         valor_alto = valor > 2_000_000
@@ -536,21 +523,21 @@ def describir_periodo(periodo):
         describir_periodo("202407")  -> "Tercer trimestre"
         describir_periodo("abc")     -> "Período no reconocido"
     """
-    # TODO:
-    # 1. Verifica si el formato es válido:
-    #    si len(periodo) != 6 OR NOT periodo.isdigit():
-    #    retorna "Período no reconocido"
-    # 2. Extrae el mes: mes = int(periodo[4:])
-    #    (los últimos dos caracteres son el mes)
-    # 3. Escribe un if/elif/elif/elif:
-    #    - si mes >= 1 and mes <= 3: retorna "Primer trimestre"
-    #    - elif mes >= 4 and mes <= 6: retorna "Segundo trimestre"
-    #    - elif mes >= 7 and mes <= 9: retorna "Tercer trimestre"
-    #    - elif mes >= 10 and mes <= 12: retorna "Cuarto trimestre"
-    # 4. Al final: retorna "Período no reconocido" (si el mes no es 1-12)
+
     
-
-
+    if len(periodo)!=6 or not periodo.isdigit():
+        return "Período no reconocido"
+    mes = int(periodo[4:])
+    if mes >= 1 and mes <=3 :
+        return "Primer trimestre"
+    elif mes >= 4 and mes <=6:
+        return "Segundo trimestre"
+    elif mes >= 7 and mes <= 9:
+        return "Tercer trimestre"
+    elif mes >= 10 and mes <= 12:
+        return "Cuarto trimestre"
+    else:
+        return "Período no reconocido"
 def calcular_sancion_basica(dias_mora, valor_base):
     """
     Calcula la sanción por mora según los días de atraso.
@@ -612,10 +599,26 @@ def priorizar_cobro(valor, dias_mora, tipo_contribuyente):
     # 3. El else final retorna "P5".
     mora_alta = dias_mora > 60
     mora_media = dias_mora > 30 and dias_mora <= 60
+    mora_baja = dias_mora <= 30
     valor_alto = valor > 1_000_000
-
-    pass
-
+    valor_bajo = valor <= 1_000_000
+    grande = tipo_contribuyente =="GRANDE"
+    mediano = tipo_contribuyente == "MEDIANO"
+    pequenno = tipo_contribuyente == "PEQUEÑO"
+    if all([mora_alta, valor_alto, grande]):
+        return "P1"
+    elif any([all([mora_alta, valor_alto, mediano]),
+            all([mora_media,valor_alto,grande]),
+            all([mora_alta,valor_bajo,grande])]):
+        return "P2"
+    elif any([all([mora_alta,valor_bajo,mediano]),
+            all([mora_media,valor_alto,mediano]),
+            all([mora_media,valor_bajo,grande])]):
+        return "P3"
+    elif any([all([mora_media,valor_alta,pequenno]),
+            all([mora_alta,valor_bajo,]),
+            all([mora_baja,])]):
+        return "P4"
 
 # ---------------------------------------------------------------------------
 # CICLOS FOR

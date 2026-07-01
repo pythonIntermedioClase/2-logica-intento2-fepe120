@@ -166,34 +166,29 @@ def menu_condicionales_encadenados():
         categoria = clasificar_contribuyente(valor)
         print(f"  ${valor:,} → {categoria}")
 
-    # TODO: descomenta cuando hayas completado calcular_sancion_basica
-    # dias_prueba = [0, 15, 45, 75, 120]
-    # valor_base = 1_000_000
-    # for dias in dias_prueba:
-    #     sancion = calcular_sancion_basica(dias, valor_base)
-    #     print(f"  {dias} días de mora → sanción: ${sancion:,.0f}")
-    pass
+
+    dias_prueba = [0, 15, 45, 75, 120]
+    valor_base = 1_000_000
+    for dias in dias_prueba:
+        sancion = calcular_sancion_basica(dias, valor_base)
+        print(f"  {dias} días de mora → sanción: ${sancion:,.0f}")
+
 
 
 def menu_ciclos_for():
     """Sección 6: ciclos for."""
     print("\n--- Ciclos for ---")
 
-    # TODO: descomenta cuando hayas completado imprimir_nits_validos
-    # nits_prueba = ["900123456", "ABC123", "800234567", "123", "400678901"]
-    # imprimir_nits_validos(nits_prueba)
+    valores = [1_500_000, 850_000, 0, 2_300_000, 950_000, 3_200_000, 450_000, 1_100_000]
+    total, promedio, maximo = calcular_totales(valores)
+    mostrar_resultado("Total", total)
+    mostrar_resultado("Promedio", promedio)
+    mostrar_resultado("Máximo", maximo)
 
-    # TODO: descomenta cuando hayas completado calcular_totales
-    # valores = [1_500_000, 850_000, 0, 2_300_000, 950_000, 3_200_000, 450_000, 1_100_000]
-    # total, promedio, maximo = calcular_totales(valores)
-    # mostrar_resultado("Total", total)
-    # mostrar_resultado("Promedio", promedio)
-    # mostrar_resultado("Máximo", maximo)
 
-    # TODO: descomenta cuando hayas completado generar_periodos_multiple
-    # periodos = generar_periodos_multiple(2024, 2025, 3)
-    # print(f"  Períodos generados: {periodos}")
-    pass
+    periodos = generar_periodos_multiple(2024, 2025, 3)
+    print(f"  Períodos generados: {periodos}")
+    
 
 
 def menu_ciclos_while():
