@@ -615,7 +615,7 @@ def priorizar_cobro(valor, dias_mora, tipo_contribuyente):
             all([mora_media,valor_alto,mediano]),
             all([mora_media,valor_bajo,grande])]):
         return "P3"
-    elif any([all([mora_media,valor_alta,pequenno]),
+    elif any([all([mora_media,valor_alto,pequenno]),
             all([mora_alta,valor_bajo,]),
             all([mora_baja,])]):
         return "P4"
