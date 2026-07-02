@@ -825,8 +825,27 @@ def validar_secuencia_periodos(periodos):
     #    - Si hay un salto: retorna False, indice + 1
     #    - Incrementa: indice = indice + 1
     # 4. Si el while termina sin encontrar salto: retorna True, None
-    
-
+    if len(periodos)<=1:
+        return True, None
+    indice = 0
+    while indice < len(periodos)-1:
+        periodo_actual = periodos[indice]
+        periodo_siguiente = periodos[indice + 1]
+        anio_actual = periodo_actual[:4]
+        mes_actual = periodo_actual[4:]
+        anio_siguiente = periodo_siguiente[:4]
+        mes_siguiente = periodo_siguiente[4:]
+        mes_comprobacion = 0
+        anio_comprobacion = 0
+        if mes_actual==12:
+            mes_comprobacion = 1
+        else:
+            mes_comprobacion = mes_actual + 1
+        anio_comprobacion = anio_actual + 1
+        if  anio_comprobacion != anio_siguiente and mes_comprobacion != mes_siguiente:
+            return False, indice + 1
+        indice += 1
+    return True, None
 
 # ---------------------------------------------------------------------------
 # LISTAS
