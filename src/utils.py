@@ -538,6 +538,8 @@ def describir_periodo(periodo):
         return "Cuarto trimestre"
     else:
         return "Período no reconocido"
+    
+
 def calcular_sancion_basica(dias_mora, valor_base):
     """
     Calcula la sanción por mora según los días de atraso.
@@ -720,7 +722,14 @@ def buscar_primer_valido(nits):
     #    - Incrementa: indice = indice + 1
     #      (esta línea va SIEMPRE dentro del while, válido o no)
     # 3. Si el while termina sin retornar: retorna None
-    pass
+    indice = 0
+    while indice < len(nits):
+        nit = nits[indice]
+        if validar_nit(nit):
+            return nit
+        indice += 1
+    return None
+    
 
 
 def sumar_hasta_limite(valores, limite):
@@ -738,16 +747,16 @@ def sumar_hasta_limite(valores, limite):
         sumar_hasta_limite([1_500_000, 850_000, 2_300_000], 3_000_000)
         -> (2, 2350000)
     """
-    # TODO:
-    # 1. Inicializa: total = 0, cantidad = 0, indice = 0
-    # 2. Escribe: while indice < len(valores):
-    #    - Extrae: valor_actual = valores[indice]
-    #    - Si total + valor_actual > limite: break (sal del ciclo)
-    #    - Acumula: total = total + valor_actual
-    #    - Incrementa: cantidad = cantidad + 1
-    #    - Incrementa: indice = indice + 1
-    # 3. Retorna cantidad, total
-    pass
+
+    total, cantidad, indice = (0,0,0)
+    while indice < len(valores):
+        valor_actual = valores[indice]
+        total +=  valor_actual
+        cantidad += 1
+        indice += 1
+        if total > limite:
+            break
+    return cantidad, total
 
 
 def encontrar_primer_sobre_umbral(valores, umbral):
@@ -774,7 +783,13 @@ def encontrar_primer_sobre_umbral(valores, umbral):
     #    - Si valor_actual > umbral: retorna valor_actual
     #    - Incrementa: indice = indice + 1
     # 3. Si el while termina sin retornar: retorna None
-    pass
+    indice = 0
+    while indice < len(valores):
+        valor_actual = valores[indice]
+        if valor_actual > umbral:
+            return valor_actual
+        indice += 1
+    return None
 
 
 def validar_secuencia_periodos(periodos):
@@ -810,7 +825,7 @@ def validar_secuencia_periodos(periodos):
     #    - Si hay un salto: retorna False, indice + 1
     #    - Incrementa: indice = indice + 1
     # 4. Si el while termina sin encontrar salto: retorna True, None
-    pass
+    
 
 
 # ---------------------------------------------------------------------------
