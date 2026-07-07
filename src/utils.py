@@ -621,6 +621,8 @@ def priorizar_cobro(valor, dias_mora, tipo_contribuyente):
             all([mora_alta,valor_bajo,]),
             all([mora_baja,])]):
         return "P4"
+    else:
+        return "P5"
 
 # ---------------------------------------------------------------------------
 # CICLOS FOR
@@ -855,12 +857,10 @@ def agregar_unico(lista, elemento):
         agregar_unico(["ACTIVO", "INACTIVO"], "ACTIVO")
         -> ["ACTIVO", "INACTIVO"]
     """
-    # TODO:
-    # 1. Si elemento NOT in lista:
-    #    - lista.append(elemento)
-    # 2. Retorna lista
-    pass
 
+    if elemento not in lista:
+        lista.append(elemento)
+    return lista
 
 def filtrar_valores_en_rango(valores, minimo, maximo):
     """
@@ -880,13 +880,13 @@ def filtrar_valores_en_rango(valores, minimo, maximo):
         filtrar_valores_en_rango([100, 500, 1000, 1500], 400, 1100)
         -> [500, 1000]
     """
-    # TODO:
-    # 1. Crea una lista vacía: resultado = []
-    # 2. Recorre: for valor in valores:
-    #    - Verifica: esta_en_rango = valor >= minimo and valor <= maximo
-    #    - Si esta_en_rango: resultado.append(valor)
-    # 3. Retorna resultado
-    pass
+
+    resultado =[]
+    for valor in valores:
+        if valor >= minimo and valor <= maximo:
+            resultado.append(valor)
+
+    return resultado
 
 
 def ordenar_valores(valores, descendente=True):
@@ -925,7 +925,14 @@ def ordenar_valores(valores, descendente=True):
     #        resultado[j] = resultado[j + 1]
     #        resultado[j + 1] = temporal
     # 5. Retorna resultado
-    pass
+    resultado = valores.copy()
+    n = len(resultado)
+    for i in range(n):
+        for j in range(n-1):
+            if descendente:
+                pass
+            else:
+                pass
 
 
 # ---------------------------------------------------------------------------
