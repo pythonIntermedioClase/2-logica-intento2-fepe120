@@ -810,21 +810,7 @@ def validar_secuencia_periodos(periodos):
         validar_secuencia_periodos(["202401", "202403"])
         -> (False, 1)
     """
-    # TODO:
-    # 1. Si len(periodos) <= 1: retorna True, None (no hay nada que comparar)
-    # 2. Inicializa: indice = 0
-    # 3. Escribe: while indice < len(periodos) - 1:
-    #    - Lee el período actual y el siguiente usando indice e indice + 1
-    #    - Extrae el año y mes de cada uno con int() y slicing:
-    #      anio_actual = int(periodos[indice][:4])
-    #      mes_actual  = int(periodos[indice][4:])
-    #    - Calcula el mes y año esperados para el siguiente período:
-    #      si mes_actual == 12: el siguiente es enero del año siguiente
-    #      de lo contrario: el siguiente es mes_actual + 1 del mismo año
-    #    - Compara con el período siguiente real
-    #    - Si hay un salto: retorna False, indice + 1
-    #    - Incrementa: indice = indice + 1
-    # 4. Si el while termina sin encontrar salto: retorna True, None
+
     if len(periodos)<=1:
         return True, None
     indice = 0
