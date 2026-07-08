@@ -235,34 +235,34 @@ def menu_diccionarios():
     """Sección 9: diccionarios con DECLARACIONES."""
     print("\n--- Diccionarios ---")
 
-    # TODO: descomenta cuando hayas completado indexar_por_nit
-    # indice = indexar_por_nit(DECLARACIONES)
-    # registro = indice.get("600456789")
-    # if registro:
-    #     print(f"  Encontrado: {registro['nombre']} — ${registro['valor']:,}")
+  
+    indice = indexar_por_nit(DECLARACIONES)
+    registro = indice.get("600456789")
+    if registro:
+        print(f"  Encontrado: {registro['nombre']} — ${registro['valor']:,}")
 
-    # TODO: descomenta cuando hayas completado construir_resumen_por_estado
-    # resumen = construir_resumen_por_estado(DECLARACIONES)
-    # print("\n  Resumen por estado:")
-    # for estado in resumen:
-    #     datos = resumen[estado]
-    #     print(f"    {estado}: {datos['conteo']} registros, ${datos['total_valor']:,}")
+  
+    resumen = construir_resumen_por_estado(DECLARACIONES)
+    print("\n  Resumen por estado:")
+    for estado in resumen:
+        datos = resumen[estado]
+        print(f"    {estado}: {datos['conteo']} registros, ${datos['total_valor']:,}")
 
-    # TODO: descomenta cuando hayas completado agrupar_por_municipio e imprimir_agrupacion
-    # print()
-    # agrupacion = agrupar_por_municipio(DECLARACIONES)
-    # imprimir_agrupacion(agrupacion)
+    
+    print()
+    agrupacion = agrupar_por_municipio(DECLARACIONES)
+    imprimir_agrupacion(agrupacion)
 
-    # TODO: descomenta cuando hayas completado calcular_estadisticas
-    # print()
-    # stats = calcular_estadisticas(DECLARACIONES)
-    # print("  Estadísticas generales:")
-    # print(f"    Total registros   : {stats['total_registros']}")
-    # print(f"    Registros activos : {stats['total_activos']}")
-    # mostrar_resultado("Suma total", stats["suma_valores"])
-    # mostrar_resultado("Promedio activos", stats["promedio_valor_activos"])
-    # mostrar_resultado("Valor máximo", stats["valor_maximo"])
-    pass
+
+    print()
+    stats = calcular_estadisticas(DECLARACIONES)
+    print("  Estadísticas generales:")
+    print(f"    Total registros   : {stats['total_registros']}")
+    print(f"    Registros activos : {stats['total_activos']}")
+    mostrar_resultado("Suma total", stats["suma_valores"])
+    mostrar_resultado("Promedio activos", stats["promedio_valor_activos"])
+    mostrar_resultado("Valor máximo", stats["valor_maximo"])
+    
 
 
 # ---------------------------------------------------------------------------

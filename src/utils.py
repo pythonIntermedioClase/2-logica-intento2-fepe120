@@ -945,12 +945,7 @@ def indexar_por_nit(declaraciones):
         indice = indexar_por_nit(DECLARACIONES)
         indice["600456789"]["nombre"]  -> "Industrias PQR S.A."
     """
-    # TODO:
-    # 1. Crea un diccionario vacío: indice = {}
-    # 2. Recorre: for declaracion in declaraciones:
-    #    - Extrae: nit = declaracion["nit"]
-    #    - Agrega al índice: indice[nit] = declaracion
-    # 3. Retorna indice
+
     indice = {}
     for declaracion in declaraciones:
         nit = declaracion["nit"]
@@ -975,17 +970,7 @@ def construir_resumen_por_estado(declaraciones):
             "INACTIVO":   {"conteo": 1, "total_valor": 0},
         }
     """
-    # TODO:
-    # 1. Crea un diccionario vacío: resumen = {}
-    # 2. Recorre: for declaracion in declaraciones:
-    #    - Extrae: estado = declaracion["estado"]
-    #    - Extrae: valor  = declaracion["valor"]
-    #    - Si estado NOT in resumen:
-    #      inicializa: resumen[estado] = {"conteo": 0, "total_valor": 0}
-    #    - Acumula:
-    #      resumen[estado]["conteo"] = resumen[estado]["conteo"] + 1
-    #      resumen[estado]["total_valor"] = resumen[estado]["total_valor"] + valor
-    # 3. Retorna resumen
+
     resumen ={}
     for declaracion in declaraciones:
         estado = declaracion["estado"]
@@ -1007,14 +992,7 @@ def agrupar_por_municipio(declaraciones):
         dict: Diccionario donde cada clave es un municipio y el valor
               es una lista con todos los registros de ese municipio.
     """
-    # TODO:
-    # 1. Crea un diccionario vacío: grupos = {}
-    # 2. Recorre: for declaracion in declaraciones:
-    #    - Extrae: municipio = declaracion["municipio"]
-    #    - Si municipio NOT in grupos:
-    #      inicializa: grupos[municipio] = []
-    #    - Agrega: grupos[municipio].append(declaracion)
-    # 3. Retorna grupos
+
     grupos = {}
     for declaracion in declaraciones:
         municipio = declaracion["municipio"]
@@ -1054,26 +1032,31 @@ def calcular_estadisticas(declaraciones):
         dict: Con las claves total_registros, total_activos,
               suma_valores, promedio_valor_activos, valor_maximo.
     """
-    # TODO:
-    # 1. Inicializa contadores antes del ciclo:
-    #    total_registros = len(declaraciones)
-    #    total_activos = 0
-    #    suma_valores = 0
-    #    suma_valores_activos = 0
-    #    valor_maximo = 0
-    # 2. Recorre: for declaracion in declaraciones:
-    #    - Extrae: valor = declaracion["valor"]
-    #    - Acumula suma_valores
-    #    - Actualiza valor_maximo si valor > valor_maximo
-    #    - Si declaracion["estado"] == "ACTIVO":
-    #        acumula total_activos y suma_valores_activos
-    # 3. Calcula el promedio (cuidado: evita división por cero):
-    #    si total_activos > 0: promedio_activos = suma_valores_activos / total_activos
-    #    else: promedio_activos = 0
-    # 4. Construye y retorna el diccionario de estadísticas con las claves:
-    #    "total_registros", "total_activos", "suma_valores",
-    #    "promedio_valor_activos", "valor_maximo"
+    total_registros = len(declaraciones)
+    total_activos = 0
+    suma_valores = 0
+    suma_valores_activos = 0
+    valor_maximo = 0
+    for declaracion in declaraciones:
+        valor = declaracion["valor"]
+        suma_valores += valor
+        if valor > valor_maximo:
+           valor_maximo = valor
+        if declaracion["estado"] == "ACTIVO":
+            total_activos += 1
+            suma_valores_activos += valor
     
+    if total_activos>0:
+        promedio_valor_activos = suma_valores_activos / total_activos
+    else:
+        promedio_valor_activos = 0
+    return {'total_registros' : total_registros, 
+    'total_activos' : total_activos,
+    'suma_valores':suma_valores, 
+    'promedio_valor_activos':promedio_valor_activos,
+    'valor_maximo':  valor_maximo}
+
+
 
 
 def filtrar_por_estado(declaraciones, estado):
@@ -1088,12 +1071,12 @@ def filtrar_por_estado(declaraciones, estado):
         list: Registros que coinciden con el estado.
     """
     # TODO:
-    # 1. Crea una lista vacía: resultado = []
-    # 2. Recorre: for declaracion in declaraciones:
-    #    - Si declaracion["estado"] == estado:
-    #        resultado.append(declaracion)
-    # 3. Retorna resultado
-    pass
+    resultado = []
+    for declaracion in declaraciones:
+        if declaracion["estado"] == estado:
+            resultado.append(declaracion)
+    return resultado
+
 
 
 def buscar_por_nit(declaraciones, nit_buscado):
@@ -1111,12 +1094,11 @@ def buscar_por_nit(declaraciones, nit_buscado):
         resultado = buscar_por_nit(DECLARACIONES, "600456789")
         resultado["nombre"]  -> "Industrias PQR S.A."
     """
-    # TODO:
-    # 1. Inicializa: indice = 0
-    # 2. Escribe: while indice < len(declaraciones):
-    #    - declaracion = declaraciones[indice]
-    #    - Si declaracion["nit"] == nit_buscado: retorna declaracion
-    #    - Incrementa: indice = indice + 1
-    #      (avanzamos aunque no coincida, para no quedarnos en el mismo lugar)
-    # 3. Si el while termina sin retornar: retorna None
-    pass
+    indice = 0
+    while indice < len(declaraciones):
+        declaracion = declaraciones[indice]
+        if declaracion["nit"] == nit_buscado:
+            return declaracion
+        indice += 1
+    return None
+
