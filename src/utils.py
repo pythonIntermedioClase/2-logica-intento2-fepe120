@@ -909,30 +909,20 @@ def ordenar_valores(valores, descendente=True):
         ordenar_valores([1_500_000, 850_000, 2_300_000, 450_000])
         -> [2300000, 1500000, 850000, 450000]
     """
-    # TODO:
-    # 1. Copia la lista para no modificar la original:
-    #    resultado = list(valores)
-    # 2. Guarda la longitud: n = len(resultado)
-    # 3. Ciclo externo: for i in range(n):
-    # 4. Ciclo interno: for j in range(0, n - i - 1):
-    #    - Si descendente es True:
-    #      deben_intercambiarse = resultado[j] < resultado[j + 1]
-    #    - Si descendente es False:
-    #      deben_intercambiarse = resultado[j] > resultado[j + 1]
-    #    - Si deben_intercambiarse:
-    #      usa una variable temporal para intercambiar los dos elementos:
-    #        temporal = resultado[j]
-    #        resultado[j] = resultado[j + 1]
-    #        resultado[j + 1] = temporal
-    # 5. Retorna resultado
+
     resultado = valores.copy()
     n = len(resultado)
     for i in range(n):
         for j in range(n-1):
             if descendente:
-                pass
+                if resultado[j]<resultado[j+1]:
+                    resultado[j+1],resultado[j] = resultado[j],resultado[j+1]
+                continue
             else:
-                pass
+                if resultado[j+1]<resultado[j]:
+                    resultado[j], resultado[j+1] = resultado[j+1],resultado[j]
+                continue
+    return resultado
 
 
 # ---------------------------------------------------------------------------
@@ -961,7 +951,11 @@ def indexar_por_nit(declaraciones):
     #    - Extrae: nit = declaracion["nit"]
     #    - Agrega al índice: indice[nit] = declaracion
     # 3. Retorna indice
-    pass
+    indice = {}
+    for declaracion in declaraciones:
+        nit = declaracion["nit"]
+        indice[nit] = declaracion
+        return indice
 
 
 def construir_resumen_por_estado(declaraciones):
@@ -992,8 +986,15 @@ def construir_resumen_por_estado(declaraciones):
     #      resumen[estado]["conteo"] = resumen[estado]["conteo"] + 1
     #      resumen[estado]["total_valor"] = resumen[estado]["total_valor"] + valor
     # 3. Retorna resumen
-    pass
-
+    resumen ={}
+    for declaracion in declaraciones:
+        estado = declaracion["estado"]
+        valor = declaracion["valor"]
+        if estado not in resumen:
+            resumen[estado] = {"conteo":0,"total_valor":0}
+        resumen[estado]["conteo"] = resumen[estado]["conteo"]+1
+        resumen[estado]["total_valor"] = resumen[estado]["total_valor"]+valor
+    return resumen
 
 def agrupar_por_municipio(declaraciones):
     """
@@ -1014,8 +1015,13 @@ def agrupar_por_municipio(declaraciones):
     #      inicializa: grupos[municipio] = []
     #    - Agrega: grupos[municipio].append(declaracion)
     # 3. Retorna grupos
-    pass
-
+    grupos = {}
+    for declaracion in declaraciones:
+        municipio = declaracion["municipio"]
+        if municipio not in grupos:
+            grupos[municipio] = []
+            grupos[municipio].append(declaracion)
+    return grupos
 
 def imprimir_agrupacion(agrupacion):
     """
@@ -1024,21 +1030,17 @@ def imprimir_agrupacion(agrupacion):
     Args:
         agrupacion (dict): Resultado de agrupar_por_municipio().
     """
-    # TODO:
-    # 1. Imprime el encabezado:
-    #    print("Resumen por municipio:")
-    #    print(f"  {'Municipio':<15} {'Declaraciones':>14} {'Total':>14}")
-    #    print("  " + "-" * 45)
-    # 2. Recorre: for municipio in agrupacion:
-    #    - registros = agrupacion[municipio]
-    #    - cantidad = len(registros)
-    #    - Calcula el total con un ciclo for:
-    #        total = 0
-    #        for registro in registros:
-    #            total = total + registro["valor"]
-    #    - Imprime la fila:
-    #      print(f"  {municipio:<15} {cantidad:>14} ${total:>13,}")
-    pass
+
+    print("Resumen por municipio:")
+    print(f"{'Municipio':<15} {'Declaraciones':>14} {'Total':>14}")
+    print("  " + "-" * 45)
+    for municipio in agrupacion:
+        registros = agrupacion[municipio]
+        cantidad = len(registros)
+        total = 0
+        for registro in registros:
+            total += registro["valor"]
+        print(f"{municipio:<15} {cantidad:>14} {total:>13,}")
 
 
 def calcular_estadisticas(declaraciones):
@@ -1071,7 +1073,7 @@ def calcular_estadisticas(declaraciones):
     # 4. Construye y retorna el diccionario de estadísticas con las claves:
     #    "total_registros", "total_activos", "suma_valores",
     #    "promedio_valor_activos", "valor_maximo"
-    pass
+    
 
 
 def filtrar_por_estado(declaraciones, estado):

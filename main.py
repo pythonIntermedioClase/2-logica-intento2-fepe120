@@ -195,42 +195,40 @@ def menu_ciclos_while():
     """Sección 7: ciclos while y variables bandera."""
     print("\n--- Ciclos while ---")
 
-    # TODO: descomenta cuando hayas completado buscar_primer_valido
-    # nits_mixtos = ["ABC123", "123", "900123456", "800234567"]
-    # primer_valido = buscar_primer_valido(nits_mixtos)
-    # print(f"  Primer NIT válido encontrado: {primer_valido}")
+    nits_mixtos = ["ABC123", "123", "900123456", "800234567"]
+    primer_valido = buscar_primer_valido(nits_mixtos)
+    print(f"  Primer NIT válido encontrado: {primer_valido}")
 
-    # TODO: descomenta cuando hayas completado sumar_hasta_limite
-    # valores = [1_500_000, 850_000, 2_300_000, 950_000]
-    # cantidad, total = sumar_hasta_limite(valores, 3_000_000)
-    # print(f"  Procesados {cantidad} registros antes de superar el límite")
-    # mostrar_resultado("Total acumulado", total)
+    valores = [1_500_000, 850_000, 2_300_000, 950_000]
+    cantidad, total = sumar_hasta_limite(valores, 3_000_000)
+    print(f"  Procesados {cantidad} registros antes de superar el límite")
+    mostrar_resultado("Total acumulado", total)
 
-    # TODO: descomenta cuando hayas completado encontrar_primer_sobre_umbral
-    # umbral = 2_000_000
-    # encontrado = encontrar_primer_sobre_umbral(valores, umbral)
-    # if encontrado is not None:
-    #     print(f"  Primer valor sobre ${umbral:,}: ${encontrado:,}")
-    # else:
-    #     print(f"  Ningún valor supera ${umbral:,}")
-    pass
+  
+    umbral = 2_000_000
+    encontrado = encontrar_primer_sobre_umbral(valores, umbral)
+    if encontrado is not None:
+        print(f"  Primer valor sobre ${umbral:,}: ${encontrado:,}")
+    else:
+        print(f"  Ningún valor supera ${umbral:,}")
+    
 
 
 def menu_listas():
     """Sección 8: listas."""
     print("\n--- Listas ---")
 
-    # TODO: descomenta cuando hayas completado filtrar_valores_en_rango
-    # valores = [1_500_000, 850_000, 0, 2_300_000, 950_000, 3_200_000, 450_000, 1_100_000]
-    # en_rango = filtrar_valores_en_rango(valores, 500_000, 2_000_000)
-    # print(f"  Valores entre $500,000 y $2,000,000: {en_rango}")
 
-    # TODO: descomenta cuando hayas completado ordenar_valores
-    # ordenados = ordenar_valores(valores)
-    # print(f"  Ordenados descendente: {ordenados}")
-    # ordenados_asc = ordenar_valores(valores, descendente=False)
-    # print(f"  Ordenados ascendente: {ordenados_asc}")
-    pass
+    valores = [1_500_000, 850_000, 0, 2_300_000, 950_000, 3_200_000, 450_000, 1_100_000]
+    en_rango = filtrar_valores_en_rango(valores, 500_000, 2_000_000)
+    print(f"  Valores entre $500,000 y $2,000,000: {en_rango}")
+
+
+    ordenados = ordenar_valores(valores)
+    print(f"  Ordenados descendente: {ordenados}")
+    ordenados_asc = ordenar_valores(valores, descendente=False)
+    print(f"  Ordenados ascendente: {ordenados_asc}")
+    
 
 
 def menu_diccionarios():
