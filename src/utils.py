@@ -432,7 +432,7 @@ def determinar_tipo_seguimiento(estado, valor, municipio):
     """
 
     if estado == "ACTIVO":
-        municipio_priotario = municipio.isin(["Bogota","Medellin"])
+        municipio_priotario = ["Bogota","Medellin"].isin(municipio)
         valor_alto = valor > 2_000_000
         if municipio_priotario and valor_alto:
             return "Seguimiento prioritario"
