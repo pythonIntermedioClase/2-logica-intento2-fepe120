@@ -237,7 +237,7 @@ def validar_nit(nit):
     """
 
     nit_limpio = nit
-    nit_limpio = nit_limpio.isdigit(nit)
+    nit_limpio = nit_limpio.isdigit()
     return nit_limpio
 
 
